@@ -11,7 +11,8 @@ boot: auto
 hassio_api: true
 homeassistant_api: true
 map:
-  - addon_config:rw
+  - type: addon_config
+    read_only: false
 options:
   nayax_base_url: https://lynx.nayax.com
   nayax_token: ""
