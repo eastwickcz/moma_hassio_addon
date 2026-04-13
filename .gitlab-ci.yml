@@ -6,6 +6,7 @@ sync_to_github:
   image: alpine:3.20
   variables:
     GIT_STRATEGY: clone
+    GIT_DEPTH: "0"
   before_script:
     - apk add --no-cache git curl
   script:
@@ -21,11 +22,13 @@ sync_to_github:
     - git remote remove github || true
     - git remote add github "https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_TARGET_REPO}.git"
 
-    # Make sure full refs are available in CI clone.
-    - git fetch --prune --unshallow origin || git fetch --prune origin
+    # GitLab CI often checks out a detached commit without local branch refs.
+    # Fetch remote-tracking branches and tags explicitly, then mirror those refs.
+    - git fetch --prune origin '+refs/heads/*:refs/remotes/origin/*'
+    - git fetch --prune origin '+refs/tags/*:refs/tags/*'
 
     # Mirror all branches and tags to GitHub.
-    - git push --prune github '+refs/heads/*:refs/heads/*'
+    - git push --prune github '+refs/remotes/origin/*:refs/heads/*'
     - git push --prune github '+refs/tags/*:refs/tags/*'
 
   rules:
