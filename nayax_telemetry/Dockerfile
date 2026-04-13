@@ -9,6 +9,6 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir --break-system-packages -r /tmp/requirements.txt
 
 COPY app /app
-COPY run.sh /run.sh
 
-RUN chmod a+x /run.sh
+COPY run.sh /etc/services.d/nayax/run
+RUN chmod a+x /etc/services.d/nayax/run
