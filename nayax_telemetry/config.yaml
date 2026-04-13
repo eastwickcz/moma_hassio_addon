@@ -1,0 +1,42 @@
+name: Nayax Telemetry Bridge
+version: "0.1.0"
+slug: nayax_telemetry
+description: Pull sales and machine status from Nayax Lynx API into Home Assistant
+url: https://devzone.nayax.com/
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: services
+boot: auto
+hassio_api: true
+homeassistant_api: true
+map:
+  - addon_config:rw
+options:
+  nayax_base_url: https://lynx.nayax.com
+  nayax_token: ""
+  poll_interval: 300
+  screen_type_id: 1
+  entity_id: 0
+  widget_ids: []
+  widget_filters_json: "[]"
+  device_query: "pageSize=1000"
+  verify_ssl: true
+  entity_prefix: nayax
+  log_level: info
+schema:
+  nayax_base_url: str
+  nayax_token: password
+  poll_interval: int(30,3600)
+  screen_type_id: int
+  entity_id: int
+  widget_ids:
+    - int
+  widget_filters_json: str
+  device_query: str
+  verify_ssl: bool
+  entity_prefix: str
+  log_level: list(trace|debug|info|notice|warning|error|fatal)
