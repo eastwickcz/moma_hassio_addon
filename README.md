@@ -25,7 +25,7 @@ Token ziskas v Nayax Core:
 
 1. V Home Assistant otevri `Settings -> Add-ons -> Add-on Store`.
 2. Klikni na tri tecky vpravo nahore a zvol `Repositories`.
-3. Pridej URL tveho forku tohoto repozitare.
+3. Pridej URL `https://github.com/eastwickcz/moma_hassio_addon`.
 4. Otevri add-on `Nayax Telemetry Bridge`, nastav konfiguraci a spust.
 
 ## Dulezite
